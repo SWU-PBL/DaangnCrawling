@@ -7,7 +7,11 @@ import re
 import pandas as pd
 
 # step2.크롬드라이버로 원하는 url로 접속(해당 사용자의 url 그때마다 입력)
-url = 'https://www.daangn.com/u/링크입력'
+url ='https://www.daangn.com/u/nOAx08YpP5m7aXVB'
+# 틀린 주소 예
+#'https://www.daangn.com/u/6GYK7jlNw3XZq3ey?install_from=user_profile'
+# 맞는 주소 예
+#'https://www.daangn.com/u/VOz2ZYbKp1W0r9vd'
 driver = webdriver.Chrome('C:/Users/chromedriver.exe')
 driver.get(url)
 time.sleep(3)
@@ -48,6 +52,9 @@ print(y + 1)
 
 data = []  # 크롤링한 데이터를 [제목, 본문] 형식으로 저장할 리스트
 
+# 숨김 처리된 글 탐지용
+hide_article = False
+
 current_num = 1
 # print(driver.current_url)
 # str = url + '?page=' + 5
@@ -65,6 +72,16 @@ for n in range(1, y + 2):
 
         # step4. 텍스트 추출
         try:
+            hide_article = driver.find_element_by_id("no-article").text
+        except:
+            pass
+
+        if hide_article != 0:
+            m = m + 1
+            print("({0}/{1})\n--------------------------".format(current_num, img_nums))
+            current_num = current_num + 1
+            hide_article = False
+        else:
             item_titles = driver.find_element_by_id("article-title").text
             item_details = driver.find_elements_by_id("article-description")
             # 리스트 속 리스트로 크롤링한 내용 저장
@@ -76,13 +93,12 @@ for n in range(1, y + 2):
             print(detail)
             print("({0}/{1})\n--------------------------".format(current_num, img_nums))
             current_num = current_num + 1
-        except:
-            m = m+1
-            print(current_num)
 
+        if current_num > img_nums:
+            break
         driver.back()
 
 
 # data 리스트 엑셀 파일로 저장
 data = pd.DataFrame(data) # 데이터 프레임으로 전환
-data.to_csv('C:/파일경로/{0}.csv'.format(user), index=False, header=False, encoding="utf-8-sig")
+data.to_csv('C:/Users/wranb/OneDrive/문서/Python&Algoritym Study/{0}.csv'.format(user), index=False, header=False, encoding="utf-8-sig")
