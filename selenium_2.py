@@ -17,7 +17,7 @@ user = driver.find_element_by_id("nickname").text
 
 # 판매 물품 개수 파악 ------------------------------------------------------------------------------ #
 # 계속해서 스크롤 다운하면서 데이터를 다 조회하는 코드 : https://hello-bryan.tistory.com/194
-SCROLL_PAUSE_SEC = 1
+SCROLL_PAUSE_SEC = 2
 
 # 스크롤 높이 가져옴
 last_height = driver.execute_script("return document.body.scrollHeight")
