@@ -7,11 +7,11 @@ import re
 import pandas as pd
 
 # step2.크롬드라이버로 원하는 url로 접속(해당 사용자의 url 그때마다 입력)
-url ='https://www.daangn.com/u/nOAx08YpP5m7aXVB'
+url ='https://www.daangn.com/u/상세주소'
 # 틀린 주소 예
-#'https://www.daangn.com/u/6GYK7jlNw3XZq3ey?install_from=user_profile'
+#'https://www.daangn.com/u/상세주소?install_from=user_profile'
 # 맞는 주소 예
-#'https://www.daangn.com/u/VOz2ZYbKp1W0r9vd'
+#'https://www.daangn.com/u/상세주소'
 driver = webdriver.Chrome('C:/Users/chromedriver.exe')
 driver.get(url)
 time.sleep(3)
@@ -101,4 +101,4 @@ for n in range(1, y + 2):
 
 # data 리스트 엑셀 파일로 저장
 data = pd.DataFrame(data) # 데이터 프레임으로 전환
-data.to_csv('C:/Users/wranb/OneDrive/문서/Python&Algoritym Study/{0}.csv'.format(user), index=False, header=False, encoding="utf-8-sig")
+data.to_csv('C:/파일경로/{0}.csv'.format(user), index=False, header=False, encoding="utf-8-sig")
