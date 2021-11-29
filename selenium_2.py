@@ -7,7 +7,7 @@ import re
 import pandas as pd
 
 # step2.크롬드라이버로 원하는 url로 접속(해당 사용자의 url 그때마다 입력)
-url ='https://www.daangn.com/u/상세주소'
+url = 'https://www.daangn.com/u/상세주소'
 # 틀린 주소 예
 #'https://www.daangn.com/u/상세주소?install_from=user_profile'
 # 맞는 주소 예
@@ -18,6 +18,9 @@ time.sleep(3)
 
 # 유저 닉네임 추출(엑셀 파일 생성에 사용)
 user = driver.find_element_by_id("nickname").text
+user = user.split(' ', 1)[0]
+region_name = driver.find_element_by_id("region_name").text
+
 
 # 판매 물품 개수 파악 ------------------------------------------------------------------------------ #
 # 계속해서 스크롤 다운하면서 데이터를 다 조회하는 코드 : https://hello-bryan.tistory.com/194
@@ -50,7 +53,8 @@ y = int(img_nums / 18)
 z = int(img_nums % 18)
 print(y + 1)
 
-data = []  # 크롤링한 데이터를 [제목, 본문] 형식으로 저장할 리스트
+data = []  # 크롤링한 데이터를 [제목, 본문] 형식으로 저장할 딕셔너리
+data.append([user, region_name])
 
 # 숨김 처리된 글 탐지용
 hide_article = False
@@ -83,12 +87,15 @@ for n in range(1, y + 2):
             hide_article = False
         else:
             item_titles = driver.find_element_by_id("article-title").text
-            item_details = driver.find_elements_by_id("article-description")
+            item_details = driver.find_elements_by_id("article-detail")
+            item_links = driver.current_url
+
             # 리스트 속 리스트로 크롤링한 내용 저장
             for i in item_details:
                 i = i.text
             detail = "".join(i)
-            list1 = [item_titles, detail]
+            # list1 = [item_titles, detail, item_links]
+            list1 = ['', '', item_titles, detail]
             data.append(list1)
             print(detail)
             print("({0}/{1})\n--------------------------".format(current_num, img_nums))
@@ -101,4 +108,6 @@ for n in range(1, y + 2):
 
 # data 리스트 엑셀 파일로 저장
 data = pd.DataFrame(data) # 데이터 프레임으로 전환
-data.to_csv('C:/파일경로/{0}.csv'.format(user), index=False, header=False, encoding="utf-8-sig")
+data.to_csv('C:/파일경로/{0}.csv'.format(user), index=False, header=['닉네임', '사는 동네', '판매 품목', '판매 내용'], encoding="utf-8-sig")
+
+driver.quit()
