@@ -71,6 +71,8 @@ print(img_nums)
 # y 는 section[숫자], z는 article[숫자]
 y = int(img_nums / 18)
 z = int(img_nums % 18)
+if img_nums % 18 == 0:
+    y = y - 1
 print(y + 1)
 
 data = []  # 크롤링한 데이터를 [제목, 본문] 형식으로 저장할 딕셔너리
