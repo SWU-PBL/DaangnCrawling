@@ -16,13 +16,13 @@ import matplotlib.pyplot as pyplot
 from PIL import Image
 
 # 자연어 처리 및 불용어
-from konlpy.tag import Okt
+from konlpy.tag import Kkma
 # from collections import Counter
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 # from konlpy.utils import pprint
 
-okt = Okt() # 더 빠른 속도를 위해 kkma 에서 okt 로 변경
+kkma = Kkma() # 더 나은 결과를 위해 kkma로 다시 변경
 
 # 한글 폰트 사용 위해서 세팅
 from matplotlib import font_manager, rc
@@ -35,7 +35,6 @@ rc('font', family=font)
 from wordcloud import WordCloud
 # from wordcloud import STOPWORDS
 
-wc_details = "" # 자연어 처리 이전 코드
 okt_details = "" # 자연어 처리 후 코드
 
 ## 크롬드라이버로 원하는 url로 접속(해당 사용자의 url 그때마다 입력)
@@ -180,16 +179,16 @@ for n in range(1, y + 2):
             # print(strings)
 
             ## 불용어 처리
-            okt_details = okt_details + ' '.join(okt.nouns(detail))
+            kkma_details = kkma_details + ' '.join(kkma.nouns(detail))
 
             # 불용어 사전
             stop_words = "가능 판매 교환 환불 완료 사용 불가 CU 반값 택배 CU반값택배 보관 상태 인치 사이즈 싸이즈 느낌 거의 최상 정도 배송 배송비 제품 재질 가슴둘레 가슴단면 둘레 직거래 단면 라인 간절 한적 온라인 세로 가로 착용 안감 구매 사진 기장 길이 색상 부분 미사 여자 남자 좀 넥 텀 새 실 딥 총 햇 봉 나 미 안 뒤 상 라 월 집 해 번 점 원 장 개 앞 짝 짐 분 택 기 발 랄 탈 후 옷 손 위 티 열 선 거 식 때 동 ㅠ '"
             stop_words = stop_words.split(' ')
 
-            word_tokens = word_tokenize(okt_details)
+            word_tokens = word_tokenize(kkma_details)
             
             word_result = [w for w in word_tokens if w not in stop_words]
-            word_result = " ".join(word_result)
+            word_result = ' '.join(word_result)
             # print(word_result)
 
             wordcloud = WordCloud(width=500, height=500, margin=0, background_color='white', 
