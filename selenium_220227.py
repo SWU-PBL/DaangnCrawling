@@ -29,7 +29,7 @@ Kkma = Kkma() # 더 나은 결과를 위해 kkma로 변경
 # 한글 폰트 사용 위해서 세팅
 from matplotlib import font_manager, rc
 
-font_path = 'C:/Users/j2won/NanumGothic.ttf'  #글씨체
+font_path = 'C:/Users/(글꼴 경로 설정)/NanumGothic.ttf'  #글씨체
 font = font_manager.FontProperties(fname=font_path).get_name()
 rc('font', family=font)
 
@@ -46,7 +46,7 @@ url = 'https://www.daangn.com/u/P3rN7zaJ5ER06n8M'
 # 'https://www.daangn.com/u/상세주소?install_from=user_profile'
 # 맞는 주소 예
 # 'https://www.daangn.com/u/상세주소'
-driver = webdriver.Chrome(r"C:/Users/j2won/chromedriver.exe") # 실행 안될 시 새로운 chromedriver 버전으로 변경
+driver = webdriver.Chrome(r"C:/Users/(ChromeDriver 경로 설정)/chromedriver.exe") # 실행 안될 시 새로운 chromedriver 버전으로 변경
 driver.get(url)
 time.sleep(3)
 
@@ -186,7 +186,7 @@ for n in range(1, y + 2):
 
             # 사용자가 정의한 불용어 사전 불러오기
             stop_words = []
-            f = open('C:/Users/j2won/stopwords.txt', 'r', encoding = 'utf-8')
+            f = open('C:/Users/(불용어 사전 경로 설정)/stopwords.txt', 'r', encoding = 'utf-8')
            
             lines = f.readlines()
             for line in lines:
@@ -224,7 +224,7 @@ pyplot.xticks(rotation = 45)
 colors = ['C0','C1','C2','C3','C4','C5','C6','C7']
 pyplot.bar(x, y, color = colors) # 막대 그래프
 # pyplot.show()
-pyplot.savefig('C:/Users/j2won/{0}_matplotlib.png'.format(user))
+pyplot.savefig('C:/Users/(데이터 전처리 및 가공 결과 경로 설정)/{0}_matplotlib.png'.format(user))
 # -> show() 함수 혹은 savefig 함수 둘 중 하나만 사용해야 함
 
 ## WordCloud
@@ -234,12 +234,12 @@ pyplot.imshow(wordcloud, interpolation='bilinear')
 pyplot.axis("off")
 pyplot.margins(x=0, y=0)
 # pyplot.show()
-pyplot.savefig('C:/Users/j2won/{0}_wordcloud.png'.format(user))
+pyplot.savefig('C:/Users/(데이터 전처리 및 가공 결과 경로 설정)/{0}_wordcloud.png'.format(user))
 # -> show() 함수 혹은 savefig 함수 둘 중 하나만 사용해야 함
 
 ## data 리스트 엑셀 파일로 저장
 data = pd.DataFrame(data)  # 데이터 프레임으로 전환
-data.to_csv('C:/Users/j2won/{0}_카테고리추가.csv'.format(user), index = False,
+data.to_csv('C:/Users/(excel 저장 경로 설정)/{0}_카테고리추가.csv'.format(user), index = False,
             header = ['닉네임', '사는 동네', '판매 품목', '품목 카테고리', '판매 내용'], encoding = "utf-8-sig")
 
 driver.quit() 
