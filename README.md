@@ -20,7 +20,8 @@ Status of personal information exposure on used trading platforms
 3. f = open('C:/Users/(불용어 사전 경로 설정)/stopwords.txt', 'r', encoding = 'utf-8')
 
 4. pyplot.savefig('C:/Users/(데이터 전처리 및 가공 결과 경로 설정)/{0}_matplotlib.png'.format(user))
-
+   pyplot.savefig('C:/Users/(데이터 전처리 및 가공 결과 경로 설정)/{0}_wordcloud.png'.format(user))
+   
 5. data.to_csv('C:/Users/(excel 저장 경로 설정)/{0}_카테고리추가.csv'.format(user), index = False,
             header = ['닉네임', '사는 동네', '판매 품목', '품목 카테고리', '판매 내용'], encoding = "utf-8-sig")</code></pre>
 
