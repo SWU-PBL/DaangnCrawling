@@ -1,7 +1,10 @@
 # DaangnCrawling
 
+#### 한국정보처리학회 ASK 2022(춘계학술발표대회) 
 ### 중고 거래 플랫폼에서 나타나는 개인정보 유출의 현황 및 제안
 Status of personal information exposure on used trading platforms
+
+해당 논문에서 코드에 대한 자세한 설명을 확인할 수 있습니다.
 
 ---------
 #### 구현 기술
