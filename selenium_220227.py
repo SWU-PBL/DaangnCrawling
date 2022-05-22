@@ -41,7 +41,7 @@ wc_details = "" # 자연어 처리 이전 코드
 kkma_details = "" # 자연어 처리 후 코드
 
 ## 크롬드라이버로 원하는 url로 접속(해당 사용자의 url 그때마다 입력)
-url = 'https://www.daangn.com/u/P3rN7zaJ5ER06n8M'
+url = 'https://www.daangn.com/u/(사용자고유번호)'
 # 틀린 주소 예
 # 'https://www.daangn.com/u/상세주소?install_from=user_profile'
 # 맞는 주소 예
